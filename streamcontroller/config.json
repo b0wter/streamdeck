@@ -1,0 +1,21 @@
+{
+    "serialnumber": "AL44G1A02732",
+    "font": "/usr/share/fonts/truetype/ubuntu/UbuntuMono-R.ttf",
+    "keys": [
+        {
+            "keyId": 0,
+            "image": "brighter.png",
+            "command": "/home/b0wter/bin/lights/brighter"
+        },
+        {
+            "keyId": 1,
+            "image": "dimmer.png",
+            "command": "/home/b0wter/bin/lights/dimmer"
+        },
+        {
+            "keyId": 14,
+            "image": "exit.png",
+            "command": "(exit)"
+        }
+    ]
+}
