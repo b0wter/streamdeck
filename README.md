@@ -52,13 +52,6 @@ This is a sample configuration file:
 }
 ```
 
-The app looks for the configuration under the filename `config.json` in the same directoy.
-In case you want to use a different filename simply pass it as a command line parameter:
-
-```
-$ python3 streamdeck.py --config my_config.json
-```
-
 The root object may have these keys:
 
 | key          | description                         | optional |
