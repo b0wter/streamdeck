@@ -230,8 +230,8 @@ def select_streamdeck(config, decks):
         raise Exception("No stream deck device was detected.")
 
 
-def run():
-    config = load_config("config.json")
+def run(config_filename):
+    config = load_config(config_filename)
     config.validate()
     streamdecks = DeviceManager().enumerate()
     print("Found {} Stream Deck(s).\n".format(len(streamdecks)))
@@ -255,13 +255,22 @@ def run():
 
 
 try:
+    DEFAULT_FILENAME = "config.json"
     if __name__ == "__main__":
         if len(sys.argv) == 2 and sys.argv[1] == "--list":
             list_streamdeck_ids()
+        if len(sys.argv) == 2:
+            if os.path.exists(sys.argv[1]):
+                run(sys.argv[1])
+            else:
+                print("You have supplied a configuration filename ('{}') but it could not be found.".format(sys.argv[1]))
         elif(len(sys.argv) >= 2):
             print("This programm can be run with a single argument '--list' to enumerate all stream decks or without any parameter for normal operation.")
         else:
-            run()
+            if os.path.exists(DEFAULT_FILENAME):
+                run(DEFAULT_FILENAME)
+            else:
+                print("You have not supplied a configuration file as parameter and '{}' could not be found.".format(DEFAULT_FILENAME))
 
 except Exception as e:
     print("The program encountered an error: ", e)
