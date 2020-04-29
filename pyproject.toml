@@ -11,6 +11,7 @@ wheel = "^0.34.2"
 pillow = "^7.1.1"
 pynput = "^1.6.8"
 xlib = "^0.21"
+argparse = "^1.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

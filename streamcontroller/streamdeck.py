@@ -14,12 +14,14 @@ import os
 import sys
 import threading
 import json
+import operator
+import functools
+import argparse
+
 from PIL import Image, ImageDraw, ImageFont
 from StreamDeck.DeviceManager import DeviceManager
 from StreamDeck.ImageHelpers import PILHelper
-from pynput.keyboard import Key, Controller
-import operator
-import functools
+
 
 # Folder location of image assets used by this example.
 ASSETS_PATH = os.path.join(os.path.dirname(__file__), "Assets")
@@ -256,21 +258,24 @@ def run(config_filename):
 
 try:
     DEFAULT_FILENAME = "config.json"
+    parser = argparse.ArgumentParser(description="Streamdeck cli controller")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--list', '-l', help="list all connected devices, then exit", action="store_true")
+    group.add_argument('--config', '-c', help="path of the configuration file")
+    args = parser.parse_args()
+
     if __name__ == "__main__":
-        if len(sys.argv) == 2 and sys.argv[1] == "--list":
+        if args.list is True:
             list_streamdeck_ids()
-        if len(sys.argv) == 2:
-            if os.path.exists(sys.argv[1]):
-                run(sys.argv[1])
-            else:
-                print("You have supplied a configuration filename ('{}') but it could not be found.".format(sys.argv[1]))
-        elif(len(sys.argv) >= 2):
-            print("This programm can be run with a single argument '--list' to enumerate all stream decks or without any parameter for normal operation.")
+            exit(0)
+        elif args.config is not None and os.path.exists(args.config):
+            run(args.config)
+        elif args.config is not None:
+            print("The config filename '{}' does not exist.".format(args.config))
+            exit(1)
         else:
-            if os.path.exists(DEFAULT_FILENAME):
-                run(DEFAULT_FILENAME)
-            else:
-                print("You have not supplied a configuration file as parameter and '{}' could not be found.".format(DEFAULT_FILENAME))
+            parser.print_help()
 
 except Exception as e:
     print("The program encountered an error: ", e)
+    exit(1)

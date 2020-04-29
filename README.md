@@ -13,6 +13,7 @@ The app relies on the following libraries:
 * pillow
 * pynput
 * xlib
+* argparse
 
 In case you want to run this on Windows or OSX you will need to replace `xlib` according to this [documentatoin](https://python-elgato-streamdeck.readthedocs.io/en/stable/pages/backend_libusb.html).
 You can download a release of this software from the [releases](https://github.com/b0wter/streamdeck/releases) page.
@@ -55,7 +56,7 @@ The app looks for the configuration under the filename `config.json` in the same
 In case you want to use a different filename simply pass it as a command line parameter:
 
 ```
-$ python3 streamdeck.py my_config.json
+$ python3 streamdeck.py --config my_config.json
 ```
 
 The root object may have these keys:
@@ -81,3 +82,11 @@ The configuration items may have these keys:
 | command | Command to run.                                     | no       |
 
 The app will perform various checks when parsing the configuration file and exit immediately on any error.
+
+# Running the app
+
+The app knows two command line arguments. You need to supply exactly one of them:
+```
+./streamdeck.py --list                  # lists all connected devices and exits
+./streamdeck.py --config config.json    # uses `config.json` to run the app
+```
