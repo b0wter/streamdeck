@@ -74,7 +74,13 @@ The configuration items may have these keys:
 | text    | Label for the button. Displayed under the image.    | yes      |
 | command | Command to run.                                     | no       |
 
+`command` has one special value. If you set it to "(exit)" a button press will exit the application.
+
 The app will perform various checks when parsing the configuration file and exit immediately on any error.
+
+## Multiple devices
+
+In case you have multiple devices you need to define a configuration file for each device and add the `serialnumber` key.
 
 # Running the app
 
