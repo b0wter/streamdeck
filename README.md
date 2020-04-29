@@ -2,6 +2,7 @@
 
 This small Python 3.7 app allows you to use your Elgato Stream Deck from Linux. 
 It builds upon [abcminiuser's stream deck library](https://github.com/abcminiuser/python-elgato-streamdeck).
+The project uses [poetry](https://python-poetry.org/) to manage its dependencies.
 
 # Installation
 
