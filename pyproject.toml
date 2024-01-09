@@ -13,9 +13,10 @@ xlib = "^0.21"
 argparse = "^1.4.0"
 typed-ast = "^1.5.5"
 pillow = "^10.2.0"
+pytest = "^7.4.4"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^7.2"
 flake8 = "^3.7.9"
 black = {version = "^19.10b0", allow-prereleases = true}
 
